@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="b25c7124-165f-4c54-9f49-80832e54df1b" name="laravel-admin-service" url="http://localhost">
+        <fileTransfer port="0" mountedRoot="D:\phpstudy_pro\WWW" accessType="MOUNT" />
+      </webServer>
+    </option>
+  </component>
+</project>
