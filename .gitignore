@@ -7,6 +7,7 @@
 /vendor
 .idea*
 .env
+composer.json
 .env.backup
 .phpunit.result.cache
 Homestead.json
