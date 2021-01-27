@@ -7,13 +7,14 @@
 namespace App\Http\Controllers;
 
 
+use App\Common\Exception\VoteException;
 use App\Common\Query\ResultResponse;
+use App\Common\Util\CommonUtil;
 use App\Common\Util\JsonUtil;
 use App\Common\Util\UserUtil;
 use App\Models\VoteCategory;
 use App\Service\VoteService;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\App;
 
 class VoteController extends Controller
 {
@@ -36,6 +37,9 @@ class VoteController extends Controller
     public function addVote(Request $request){
         $optionArray=$request->get('options');
         $voteId=$request->get('voteId');
+        if(CommonUtil::isNull($optionArray)||CommonUtil::isNull($voteId)){
+            throw new VoteException('投票id或选项不可为空');
+        }
         return JsonUtil::toJson($this->voteService->vote($voteId,$optionArray));
     }
 
