@@ -2,7 +2,11 @@
 
 namespace App\Exceptions;
 
+use App\Common\Exception\VoteException;
+use App\Common\Query\ResultResponse;
+use App\Common\Util\JsonUtil;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Support\Facades\Log;
 use Throwable;
 
 class Handler extends ExceptionHandler
@@ -50,6 +54,11 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Throwable $exception)
     {
-        return parent::render($request, $exception);
+        if ($exception instanceof VoteException) {
+            Log::warning('------VoteException------' . $exception->getTraceAsString());
+            return response(JsonUtil::toJson(ResultResponse::fail(500, $exception->getMessage(), '')));
+        }
+        Log::warning('------Exception------' . $exception->getTraceAsString());
+        return response(JsonUtil::toJson(ResultResponse::fail(500, '服务出问题啦', '')));
     }
 }

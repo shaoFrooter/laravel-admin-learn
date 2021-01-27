@@ -7,6 +7,7 @@
 namespace App\Show;
 
 
+use App\Models\Employee;
 use App\Models\Salary;
 use Illuminate\Contracts\Support\Renderable;
 
@@ -14,8 +15,9 @@ class SalaryShow implements Renderable
 {
     public function render($key=null)
     {
-        $salary=new Salary();
-        dump($salary->newQuery()->where('id',$key)->get()->toArray());
+        $salary=new Employee();
+        $salaryResult=$salary->newQuery()->find($key);
+        return 'http://localhost/uploads'.$salaryResult['avatar'];
     }
 
 

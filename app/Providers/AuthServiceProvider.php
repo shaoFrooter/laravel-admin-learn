@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Models\Salary;
+use App\Policies\SalaryPolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
 
@@ -14,6 +16,7 @@ class AuthServiceProvider extends ServiceProvider
      */
     protected $policies = [
         // 'App\Model' => 'App\Policies\ModelPolicy',
+        Salary::class=>SalaryPolicy::class
     ];
 
     /**
@@ -24,7 +27,6 @@ class AuthServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->registerPolicies();
-
-        //
+        Gate::define('create-check','App\Policies\SalaryPolicy@hasCreate');
     }
 }

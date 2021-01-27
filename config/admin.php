@@ -22,7 +22,7 @@ return [
     | `img` tag, eg '<img src="http://logo-url" alt="Admin logo">'.
     |
     */
-    'logo' => '<b>Laravel</b> admin',
+//    'logo' => '<b>Laravel</b> admin',
 
     /*
     |--------------------------------------------------------------------------
@@ -395,6 +395,10 @@ return [
     |
     */
     'extensions' => [
+        'chartjs' => [
 
+            // Set to `false` if you want to disable this extension
+            'enable' => true,
+        ]
     ],
 ];

@@ -6,6 +6,7 @@ use App\User;
 use Encore\Admin\Controllers\AdminController;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
+use Encore\Admin\Layout\Content;
 use Encore\Admin\Show;
 
 class UserController extends AdminController
@@ -34,7 +35,6 @@ class UserController extends AdminController
         $grid->column('remember_token', __('Remember token'));
         $grid->column('created_at', __('Created at'));
         $grid->column('updated_at', __('Updated at'));
-
         return $grid;
     }
 
@@ -71,10 +71,12 @@ class UserController extends AdminController
 
         $form->text('name', __('Name'));
         $form->email('email', __('Email'));
-        $form->datetime('email_verified_at', __('Email verified at'))->default(date('Y-m-d H:i:s'));
         $form->password('password', __('Password'));
-        $form->text('remember_token', __('Remember token'));
-
         return $form;
+    }
+
+    public function create(Content $content)
+    {
+        return parent::create($content);
     }
 }
