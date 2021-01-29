@@ -11,7 +11,14 @@ Route::group([
     'as'            => config('admin.route.prefix') . '.',
 ], function (Router $router) {
 
-    $router->get('/', 'HomeController@index')->name('home');
+//    $router->get('/', 'HomeController@index')->name('home');
+    //修改admin进入的首页
+    $router->get('/', function (){
+        return redirect('admin/voteCategory/manage');
+    })->name('home');
+    $router->get('/admin/dashboard',function (){
+        return redirect('admin/voteCategory/manage');
+    });
     $router->resource('user/manage',UserController::class);
     $router->resource('employees', EmployeeController::class);
     $router->resource('salary/manage', SalaryController::class);
