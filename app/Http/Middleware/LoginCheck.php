@@ -63,11 +63,9 @@ class LoginCheck
             }
         } elseif ($routeName == 'register') {
             return $next($request);
-        }elseif($routeName=='logout'){
-            if($request->hasCookie($this->loginCookieName)){
-                //删除cookie
-                return $next($request)->withCookie(cookie($this->loginCookieName, '-', 0));
-            }
+        }elseif($routeName=='logout') {
+            //删除cookie
+            return $next($request)->withCookie(cookie($this->loginCookieName, '-', 0));
         }
         //其他访问
         $loginCookieValue = $request->cookie($this->loginCookieName);

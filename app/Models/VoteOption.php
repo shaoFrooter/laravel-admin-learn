@@ -22,6 +22,10 @@ class VoteOption extends BaseModel
         return $this->belongsTo(VoteCategory::class,'vote_id');
     }
 
+    public function vote(){
+        return $this->morphTo();
+    }
+
     public function selectByVoteIdList(array $voteIdList){
         $dataArray=$this->newQuery()->whereIn('vote_id',$voteIdList)->get()->toArray();
         return $this->convert2Object($dataArray);

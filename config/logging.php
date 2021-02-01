@@ -49,7 +49,7 @@ return [
 
         'daily' => [
             'driver' => 'daily',
-            'path' => '/home/work/log/laravel-admin-example/laravel-admin-example.log',
+            'path' => '/home/work/log/vote-system/vote-system.log',
             'level' => 'debug',
             'days' => 14,
         ],

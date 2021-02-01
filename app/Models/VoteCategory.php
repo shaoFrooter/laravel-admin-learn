@@ -31,6 +31,10 @@ class VoteCategory extends BaseModel
         return $this->hasMany(VoteOption::class,'vote_id');
     }
 
+    public function voteOptionsMorp(){
+        return $this->morphMany(VoteOption::class,'vote');
+    }
+
     public function queryValidVoteCategory($dateNow,int $pageNo,int $pageSize){
         $dataArray=$this->newQuery()->where('start_time','<',$dateNow)->where('end_time','>',$dateNow)->orderBy('id','desc')->forPage($pageNo,$pageSize)->get()->toArray();
         return $this->convert2Object($dataArray);
